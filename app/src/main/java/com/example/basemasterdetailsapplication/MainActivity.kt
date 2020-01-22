@@ -2,12 +2,8 @@ package com.example.basemasterdetailsapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.basemasterdetailsapplication.models.DummyData
-import com.example.basemasterdetailsapplication.network.apiServices
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,15 +11,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        apiServices.getProperties().enqueue(object : Callback<List<DummyData>> {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
+        /*apiServices.getProperties().enqueue(object : Callback<List<DummyData>> {
             override fun onFailure(call: Call<List<DummyData>>, t: Throwable) {
-                textView.text = t.message
+                //textView.text = t.message
             }
 
             override fun onResponse(call: Call<List<DummyData>>, response: Response<List<DummyData>>) {
-                textView.text = response.body().toString()
+                //textView.text = response.body().toString()
             }
 
-        })
+        })*/
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return navController.navigateUp()
     }
 }
