@@ -21,12 +21,11 @@ val retrofit: Retrofit by lazy {
 
 private val moshi: Moshi by lazy { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
 
-private val interceptor by lazy {
-    val interceptor = HttpLoggingInterceptor()
-    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-}
+private val interceptor = HttpLoggingInterceptor()
 
 private val client by lazy {
+
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
     OkHttpClient
         .Builder()
