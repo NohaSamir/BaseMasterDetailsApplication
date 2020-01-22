@@ -7,16 +7,16 @@ import androidx.room.RoomDatabase
 import com.example.basemasterdetailsapplication.models.DummyData
 
 @Database(entities = [DummyData::class], version = 1, exportSchema = false)
-abstract class DataDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract val dataDao: DataDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: DataDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): DataDatabase {
+        fun getInstance(context: Context): AppDatabase {
             synchronized(this)
             {
                 var instance = INSTANCE
@@ -24,7 +24,7 @@ abstract class DataDatabase : RoomDatabase() {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        DataDatabase::class.java,
+                        AppDatabase::class.java,
                         "data_database")
 
                         .fallbackToDestructiveMigration()

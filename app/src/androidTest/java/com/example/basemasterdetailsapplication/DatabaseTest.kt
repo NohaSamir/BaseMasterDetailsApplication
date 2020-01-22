@@ -4,7 +4,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.basemasterdetailsapplication.database.DataDao
-import com.example.basemasterdetailsapplication.database.DataDatabase
+import com.example.basemasterdetailsapplication.database.AppDatabase
 import com.example.basemasterdetailsapplication.models.DummyData
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -18,14 +18,14 @@ import java.io.IOException
 class DatabaseTest {
 
     private lateinit var dataDao: DataDao
-    private lateinit var db: DataDatabase
+    private lateinit var db: AppDatabase
 
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
-        db = Room.inMemoryDatabaseBuilder(context, DataDatabase::class.java)
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
