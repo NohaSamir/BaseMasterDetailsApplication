@@ -1,5 +1,6 @@
 package com.example.basemasterdetailsapplication.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -13,6 +14,7 @@ private const val BASE_URL = "https://mars.udacity.com/"
 val retrofit: Retrofit by lazy {
     Retrofit.Builder()
         .baseUrl(BASE_URL)
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(client)
         .build()

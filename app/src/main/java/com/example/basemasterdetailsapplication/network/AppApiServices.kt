@@ -1,7 +1,7 @@
 package com.example.basemasterdetailsapplication.network
 
-import com.example.basemasterdetailsapplication.models.DummyData
-import retrofit2.Call
+import com.example.basemasterdetailsapplication.network.models.NetworkDummyData
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 val apiServices: AppApiServices by lazy {
@@ -12,5 +12,5 @@ interface AppApiServices {
 
     //ToDo 3 : Add App Web Services
     @GET("realestate")
-    fun getProperties(): Call<List<DummyData>>
+    fun getProperties(): Deferred<List<NetworkDummyData>>
 }

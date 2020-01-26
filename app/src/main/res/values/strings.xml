@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BaseMasterDetailsApplication</string>
+    <string name="list_screen_title">list</string>
+    <string name="details_screen_title">details</string>
 </resources>

@@ -14,16 +14,6 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
 
-        /*apiServices.getProperties().enqueue(object : Callback<List<DummyData>> {
-            override fun onFailure(call: Call<List<DummyData>>, t: Throwable) {
-                //textView.text = t.message
-            }
-
-            override fun onResponse(call: Call<List<DummyData>>, response: Response<List<DummyData>>) {
-                //textView.text = response.body().toString()
-            }
-
-        })*/
     }
 
     override fun onSupportNavigateUp(): Boolean {

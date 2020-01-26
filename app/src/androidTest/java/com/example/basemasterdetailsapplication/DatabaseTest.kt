@@ -3,9 +3,9 @@ package com.example.basemasterdetailsapplication
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.basemasterdetailsapplication.database.DataDao
 import com.example.basemasterdetailsapplication.database.AppDatabase
-import com.example.basemasterdetailsapplication.models.DummyData
+import com.example.basemasterdetailsapplication.database.DataDao
+import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -43,8 +43,9 @@ class DatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetData() {
-        val item = DummyData("1", 10.0, "test", "")
-        dataDao.insert(listOf(item))
+        val item = DatabaseDummyData("1", 10.0, "test", "")
+        val list: Array<DatabaseDummyData> = listOf(item).toTypedArray()
+        dataDao.insert(*list)
         val allData = dataDao.getAllData()
         assertEquals(allData.value?.size, 1)
     }

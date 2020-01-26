@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.basemasterdetailsapplication.models.DummyData
+import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
 
-@Database(entities = [DummyData::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseDummyData::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract val dataDao: DataDao
@@ -25,7 +25,8 @@ abstract class AppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "data_database")
+                        "data_database"
+                    )
 
                         .fallbackToDestructiveMigration()
                         .build()

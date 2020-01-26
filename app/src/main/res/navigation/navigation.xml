@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.basemasterdetailsapplication.ui.list.ListFragment"
-        android:label="list_fragment"
+        android:label="@string/list_screen_title"
         tools:layout="@layout/list_fragment" >
         <action
             android:id="@+id/action_listFragment_to_detailsFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.basemasterdetailsapplication.ui.details.DetailsFragment"
-        android:label="details_fragment"
+        android:label="@string/details_screen_title"
         tools:layout="@layout/details_fragment" />
 </navigation>

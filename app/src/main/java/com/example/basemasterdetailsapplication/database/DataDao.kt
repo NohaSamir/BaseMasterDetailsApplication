@@ -5,17 +5,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.basemasterdetailsapplication.models.DummyData
+import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
+import com.example.basemasterdetailsapplication.domain.DummyData
 
 @Dao
 interface DataDao {
 
-    @Query("Select * from DummyData")
-    fun getAllData(): LiveData<List<DummyData>>
+    @Query("Select * from DatabaseDummyData")
+    fun getAllData(): LiveData<List<DatabaseDummyData>>
 
-    @Query("Select * from DummyData where id = :key ")
-    fun get(key: String): DummyData
+    @Query("Select * from DatabaseDummyData where id = :key ")
+    fun get(key: String): DatabaseDummyData
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(list: List<DummyData>)
+    fun insert(vararg list: DatabaseDummyData)
 }
