@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.basemasterdetailsapplication.R
 import com.example.basemasterdetailsapplication.database.AppDatabase
 import com.example.basemasterdetailsapplication.domain.DummyData
@@ -29,10 +30,8 @@ class ListFragment : Fragment() {
 
         adapter = ListAdapter(object : OnClickListener {
             override fun onClick(data: DummyData) {
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_listFragment_to_detailsFragment)
+                findNavController().navigate(R.id.action_listFragment_to_detailsFragment)
             }
-
         })
 
         view.recycler.adapter = adapter
