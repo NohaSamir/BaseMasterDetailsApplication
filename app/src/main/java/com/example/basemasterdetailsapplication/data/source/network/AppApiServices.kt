@@ -1,6 +1,6 @@
-package com.example.basemasterdetailsapplication.network
+package com.example.basemasterdetailsapplication.data.source.network
 
-import com.example.basemasterdetailsapplication.network.models.NetworkDummyData
+import com.example.basemasterdetailsapplication.data.source.network.models.NetworkDummyData
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 

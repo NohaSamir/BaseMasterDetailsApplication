@@ -1,12 +1,11 @@
-package com.example.basemasterdetailsapplication.database
+package com.example.basemasterdetailsapplication.data.source.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
-import com.example.basemasterdetailsapplication.domain.DummyData
+import com.example.basemasterdetailsapplication.data.source.database.models.DatabaseDummyData
 
 @Dao
 interface DataDao {

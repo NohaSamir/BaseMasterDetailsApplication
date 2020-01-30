@@ -3,7 +3,7 @@ package com.example.basemasterdetailsapplication.workmanager
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.basemasterdetailsapplication.repository.dataRepository
+import com.example.basemasterdetailsapplication.data.source.repository.dataRepository
 
 class RefreshDataWorker(
     appContext: Context,

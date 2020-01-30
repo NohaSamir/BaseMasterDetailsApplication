@@ -3,22 +3,20 @@ package com.example.basemasterdetailsapplication.ui.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.basemasterdetailsapplication.domain.DataRepository
 import com.example.basemasterdetailsapplication.domain.DummyData
-import com.example.basemasterdetailsapplication.repository.DataRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ListViewModel(val repository: DataRepository) : ViewModel() {
+class ListViewModel(private val repository: DataRepository) : ViewModel() {
 
     private val viewModelJob = Job()
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val list: LiveData<List<DummyData>> = repository.list
-
-
+    val list: LiveData<List<DummyData>> = repository.getList()
 
     init {
         coroutineScope.launch {

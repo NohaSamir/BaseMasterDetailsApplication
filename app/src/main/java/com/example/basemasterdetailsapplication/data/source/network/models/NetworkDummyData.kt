@@ -1,6 +1,6 @@
-package com.example.basemasterdetailsapplication.network.models
+package com.example.basemasterdetailsapplication.data.source.network.models
 
-import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
+import com.example.basemasterdetailsapplication.data.source.database.models.DatabaseDummyData
 import com.example.basemasterdetailsapplication.domain.DummyData
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

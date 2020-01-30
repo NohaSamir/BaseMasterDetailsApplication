@@ -1,31 +1,30 @@
 package com.example.basemasterdetailsapplication.ui.details
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.example.basemasterdetailsapplication.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.example.basemasterdetailsapplication.databinding.DetailsFragmentBinding
 
 class DetailsFragment : Fragment() {
 
-    private val viewModel: DetailsViewModel by lazy {
-        ViewModelProviders.of(this).get(DetailsViewModel::class.java)
-    }
+    private lateinit var viewModel: DetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.details_fragment, container, false)
+
+        val binding = DetailsFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        val dummyData = DetailsFragmentArgs.fromBundle(arguments!!).dummyData
+        val viewModelFactory = DetailViewModelFactory(dummyData)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailsViewModel::class.java)
+        binding.viewModel = viewModel
+
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
-
 }

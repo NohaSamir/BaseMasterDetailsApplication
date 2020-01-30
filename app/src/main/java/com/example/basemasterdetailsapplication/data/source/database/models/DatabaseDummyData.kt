@@ -1,4 +1,4 @@
-package com.example.basemasterdetailsapplication.database.models
+package com.example.basemasterdetailsapplication.data.source.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

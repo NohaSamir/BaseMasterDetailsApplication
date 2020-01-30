@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.basemasterdetailsapplication.R
 import com.example.basemasterdetailsapplication.databinding.ListFragmentBinding
 import com.example.basemasterdetailsapplication.domain.DummyData
-import com.example.basemasterdetailsapplication.repository.dataRepository
+import com.example.basemasterdetailsapplication.data.source.repository.dataRepository
 
 class ListFragment : Fragment() {
 
@@ -43,7 +42,7 @@ class ListFragment : Fragment() {
         /*Initialize adapter and handle on item click */
         adapter = ListAdapter(object : OnClickListener {
             override fun onClick(data: DummyData) {
-                findNavController().navigate(R.id.action_listFragment_to_detailsFragment)
+                findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(data))
             }
         })
 

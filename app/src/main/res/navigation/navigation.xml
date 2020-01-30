@@ -18,5 +18,10 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.basemasterdetailsapplication.ui.details.DetailsFragment"
         android:label="@string/details_screen_title"
-        tools:layout="@layout/details_fragment" />
+        tools:layout="@layout/details_fragment" >
+        <argument android:name="dummyData"
+            app:argType="com.example.basemasterdetailsapplication.domain.DummyData"/>
+    </fragment>
+
+
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.basemasterdetailsapplication.network
+package com.example.basemasterdetailsapplication.data.source.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi

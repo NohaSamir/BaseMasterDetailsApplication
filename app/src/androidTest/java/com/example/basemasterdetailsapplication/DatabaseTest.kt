@@ -3,9 +3,9 @@ package com.example.basemasterdetailsapplication
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.basemasterdetailsapplication.database.AppDatabase
-import com.example.basemasterdetailsapplication.database.DataDao
-import com.example.basemasterdetailsapplication.database.models.DatabaseDummyData
+import com.example.basemasterdetailsapplication.data.source.database.AppDatabase
+import com.example.basemasterdetailsapplication.data.source.database.DataDao
+import com.example.basemasterdetailsapplication.data.source.database.models.DatabaseDummyData
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
