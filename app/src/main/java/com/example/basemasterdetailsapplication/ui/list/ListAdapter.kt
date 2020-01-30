@@ -3,10 +3,12 @@ package com.example.basemasterdetailsapplication.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.basemasterdetailsapplication.R
+import com.example.basemasterdetailsapplication.databinding.ListItemBinding
 import com.example.basemasterdetailsapplication.domain.DummyData
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -24,11 +26,12 @@ class ListAdapter(val listener: OnClickListener) :
     }
 }
 
-class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class DataViewHolder(private var binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(data: DummyData, listener: OnClickListener) {
+        binding.dummyData = data
+        binding.executePendingBindings()
 
-        itemView.textView.text = data.id
         itemView.setOnClickListener {
             listener.onClick(data)
         }
@@ -37,8 +40,8 @@ class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     companion object {
         fun from(parent: ViewGroup): DataViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val view = layoutInflater.inflate(R.layout.list_item, parent, false)
-            return DataViewHolder(view)
+            val binding = ListItemBinding.inflate(layoutInflater , parent , false)
+            return DataViewHolder(binding)
         }
     }
 }
@@ -56,3 +59,5 @@ class DataDiffCallback : DiffUtil.ItemCallback<DummyData>() {
 interface OnClickListener {
     fun onClick(data: DummyData)
 }
+
+

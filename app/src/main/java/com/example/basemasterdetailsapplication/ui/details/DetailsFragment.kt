@@ -11,11 +11,9 @@ import com.example.basemasterdetailsapplication.R
 
 class DetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DetailsFragment()
+    private val viewModel: DetailsViewModel by lazy {
+        ViewModelProviders.of(this).get(DetailsViewModel::class.java)
     }
-
-    private lateinit var viewModel: DetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +24,7 @@ class DetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
+
         // TODO: Use the ViewModel
     }
 

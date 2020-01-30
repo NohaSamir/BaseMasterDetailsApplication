@@ -16,8 +16,9 @@ class ListViewModel(val repository: DataRepository) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-
     val list: LiveData<List<DummyData>> = repository.list
+
+
 
     init {
         coroutineScope.launch {

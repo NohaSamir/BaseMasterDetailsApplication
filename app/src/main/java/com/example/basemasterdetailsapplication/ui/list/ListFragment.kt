@@ -7,55 +7,62 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.basemasterdetailsapplication.R
-import com.example.basemasterdetailsapplication.database.AppDatabase
+import com.example.basemasterdetailsapplication.databinding.ListFragmentBinding
 import com.example.basemasterdetailsapplication.domain.DummyData
-import com.example.basemasterdetailsapplication.network.apiServices
-import com.example.basemasterdetailsapplication.repository.DataRepository
 import com.example.basemasterdetailsapplication.repository.dataRepository
-import kotlinx.android.synthetic.main.list_fragment.view.*
 
 class ListFragment : Fragment() {
 
     private lateinit var adapter: ListAdapter
-    private lateinit var viewModel: ListViewModel
 
+    /**
+     * Lazily initialize our [ListViewModel].
+     */
+    private val viewModel: ListViewModel by lazy {
+        ViewModelProviders.of(this, ListViewModel.Factory(dataRepository))
+            .get(ListViewModel::class.java)
+    }
+
+    /**
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the ListViewModel
+     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
+     */
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.list_fragment, container, false)
 
+        val binding = ListFragmentBinding.inflate(inflater)
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        /*Initialize adapter and handle on item click */
         adapter = ListAdapter(object : OnClickListener {
             override fun onClick(data: DummyData) {
                 findNavController().navigate(R.id.action_listFragment_to_detailsFragment)
             }
         })
 
-        view.recycler.adapter = adapter
+        binding.recycler.adapter = adapter
 
-        return view
+        return binding.root
     }
 
+    /**
+     * Observe view model
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        context?.let {
-
-            viewModel =
-                ViewModelProviders.of(this, ListViewModel.Factory(dataRepository)).get(ListViewModel::class.java)
-
-
-            viewModel.list.observe(this,
-                Observer<List<DummyData>> {
-                    if (it != null) {
-                        adapter.submitList(it)
-                    }
-                })
-        }
-
+        viewModel.list.observe(this,
+            Observer<List<DummyData>> {
+                if (it != null) {
+                    adapter.submitList(it)
+                }
+            })
     }
-
 }
+

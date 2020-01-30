@@ -31,6 +31,7 @@ class DataRepository(
         withContext(Dispatchers.IO)
         {
             val list = webServices.getProperties().await()
+
             database.dataDao.insert(list = *list.asDatabaseModel())
         }
     }
