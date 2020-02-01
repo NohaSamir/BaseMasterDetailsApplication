@@ -16,7 +16,7 @@ class RefreshDataWorker(
 
     override suspend fun doWork(): Result {
         try {
-            dataRepository.refreshList()
+            dataRepository.refreshList(null)
             return Result.success()
         } catch (e: Exception) {
             return Result.retry()

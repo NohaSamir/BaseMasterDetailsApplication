@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--ToDO: Edit Details View-->
+<?xml version="1.0" encoding="utf-8"?><!--ToDO: Edit Details View-->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.basemasterdetailsapplication.ui.details.DetailsViewModel" />
@@ -18,12 +18,28 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.selectedProperty.id}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:text="TextView" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            loadImage="@{viewModel.selectedProperty.imgSrc}"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/card_height"
+            android:contentDescription="@string/image"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic[7]" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,9 +1,11 @@
 package com.example.basemasterdetailsapplication.ui.list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.basemasterdetailsapplication.domain.DataRepository
+import com.example.basemasterdetailsapplication.domain.DataStatus
 import com.example.basemasterdetailsapplication.domain.DummyData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,12 +18,14 @@ class ListViewModel(private val repository: DataRepository) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    private var _dataStatus: MutableLiveData<DataStatus> = MutableLiveData()
+
+    val dataStatus :LiveData<DataStatus> = _dataStatus
+
     val list: LiveData<List<DummyData>> = repository.getList()
 
     init {
-        coroutineScope.launch {
-            repository.refreshList()
-        }
+        refresh()
     }
 
     override fun onCleared() {
@@ -39,6 +43,13 @@ class ListViewModel(private val repository: DataRepository) : ViewModel() {
                 return ListViewModel(repository) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
+
+    fun refresh()
+    {
+        coroutineScope.launch {
+            repository.refreshList(_dataStatus)
         }
     }
 }

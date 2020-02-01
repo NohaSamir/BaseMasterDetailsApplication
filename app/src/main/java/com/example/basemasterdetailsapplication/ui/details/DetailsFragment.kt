@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.basemasterdetailsapplication.databinding.DetailsFragmentBinding
 
 class DetailsFragment : Fragment() {
@@ -22,7 +22,9 @@ class DetailsFragment : Fragment() {
 
         val dummyData = DetailsFragmentArgs.fromBundle(arguments!!).dummyData
         val viewModelFactory = DetailViewModelFactory(dummyData)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(DetailsViewModel::class.java)
+
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         return binding.root

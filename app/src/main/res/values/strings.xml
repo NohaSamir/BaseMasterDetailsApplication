@@ -2,4 +2,7 @@
     <string name="app_name">BaseMasterDetailsApplication</string>
     <string name="list_screen_title">list</string>
     <string name="details_screen_title">details</string>
+    <string name="couldnt_refresh_feeds">Couldn\'t refresh feeds</string>
+    <string name="retry">Retry</string>
+    <string name="image">image</string>
 </resources>
