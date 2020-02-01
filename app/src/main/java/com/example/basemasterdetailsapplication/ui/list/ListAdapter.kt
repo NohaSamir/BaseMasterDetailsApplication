@@ -1,16 +1,12 @@
 package com.example.basemasterdetailsapplication.ui.list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.basemasterdetailsapplication.R
 import com.example.basemasterdetailsapplication.databinding.ListItemBinding
 import com.example.basemasterdetailsapplication.domain.DummyData
-import kotlinx.android.synthetic.main.list_item.view.*
 
 class ListAdapter(val listener: OnClickListener) :
     ListAdapter<DummyData, DataViewHolder>(DataDiffCallback()) {
@@ -40,7 +36,7 @@ class DataViewHolder(private var binding: ListItemBinding) : RecyclerView.ViewHo
     companion object {
         fun from(parent: ViewGroup): DataViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ListItemBinding.inflate(layoutInflater , parent , false)
+            val binding = ListItemBinding.inflate(layoutInflater, parent, false)
             return DataViewHolder(binding)
         }
     }
