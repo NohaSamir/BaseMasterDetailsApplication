@@ -31,8 +31,10 @@ fun bindDataStatus(imageView: ImageView, status: DataStatus?) {
         }
 
         DataStatus.ERROR -> {
-            imageView.visibility = View.VISIBLE
+            /*imageView.visibility = View.VISIBLE
             imageView.setImageResource(R.drawable.ic_connection_error)
+*/
+            imageView.visibility = View.GONE
         }
 
         DataStatus.SUCCESS -> {
