@@ -8,6 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class DummyData(
     val id: String,
     val price: Double,
-    val type: String,
+    var type: String,
     val imgSrc: String
 ) : Parcelable
