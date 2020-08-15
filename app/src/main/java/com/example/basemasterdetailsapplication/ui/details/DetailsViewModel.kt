@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.basemasterdetailsapplication.domain.DummyData
 
-class DetailsViewModel(private val dummyData: DummyData) : ViewModel() {
+class DetailsViewModel(dummyData: DummyData) : ViewModel() {
 
     private val _selectedProperty = MutableLiveData<DummyData>()
 

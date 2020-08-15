@@ -35,7 +35,7 @@
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="parent"
-             bindDataStatus="@{viewModel.dataStatus}"
+             bindDataStatus="@{viewModel.loading}"
              android:scaleType="fitXY"
              android:minWidth="100dp"
              android:minHeight="100dp"/>

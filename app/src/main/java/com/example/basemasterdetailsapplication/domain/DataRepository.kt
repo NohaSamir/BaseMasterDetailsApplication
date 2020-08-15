@@ -1,11 +1,11 @@
 package com.example.basemasterdetailsapplication.domain
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.example.basemasterdetailsapplication.data.source.network.models.ResultWrapper
 
 interface DataRepository {
 
     fun getList(): LiveData<List<DummyData>>
 
-    suspend fun refreshList(dataStatus: MutableLiveData<DataStatus>?)
+    suspend fun refreshList(): ResultWrapper<List<DummyData>>
 }

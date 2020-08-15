@@ -7,7 +7,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.basemasterdetailsapplication.R
-import com.example.basemasterdetailsapplication.domain.DataStatus
 
 @BindingAdapter("loadImage")
 fun loadImage(imageView: ImageView, url: String?) {
@@ -17,29 +16,21 @@ fun loadImage(imageView: ImageView, url: String?) {
 
         Glide.with(imageView.context)
             .load(imgUri)
-            .apply(RequestOptions().placeholder(R.drawable.loading_img).error(R.drawable.ic_broken_image))
+            .apply(
+                RequestOptions().placeholder(R.drawable.loading_img)
+                    .error(R.drawable.ic_broken_image)
+            )
             .into(imageView)
     }
 }
 
 @BindingAdapter("bindDataStatus")
-fun bindDataStatus(imageView: ImageView, status: DataStatus?) {
-    when (status) {
-        DataStatus.LOADING -> {
-            imageView.visibility = View.VISIBLE
-            imageView.setImageResource(R.drawable.loading_animation)
-        }
-
-        DataStatus.ERROR -> {
-            /*imageView.visibility = View.VISIBLE
-            imageView.setImageResource(R.drawable.ic_connection_error)
-*/
-            imageView.visibility = View.GONE
-        }
-
-        DataStatus.SUCCESS -> {
-            imageView.visibility = View.GONE
-        }
+fun bindDataStatus(imageView: ImageView, loading: Boolean) {
+    if (loading) {
+        imageView.visibility = View.VISIBLE
+        imageView.setImageResource(R.drawable.loading_animation)
+    } else {
+        imageView.visibility = View.GONE
     }
 }
 

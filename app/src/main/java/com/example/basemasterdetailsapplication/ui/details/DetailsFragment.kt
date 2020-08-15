@@ -20,7 +20,8 @@ class DetailsFragment : Fragment() {
         val binding = DetailsFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val dummyData = DetailsFragmentArgs.fromBundle(arguments!!).dummyData
+        var dummyData = DetailsFragmentArgs.fromBundle(arguments!!).dummyData.copy()
+
         val viewModelFactory = DetailViewModelFactory(dummyData)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailsViewModel::class.java)
 

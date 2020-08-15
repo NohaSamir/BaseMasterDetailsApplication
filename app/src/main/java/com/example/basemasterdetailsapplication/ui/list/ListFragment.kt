@@ -1,6 +1,7 @@
 package com.example.basemasterdetailsapplication.ui.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.basemasterdetailsapplication.R
+import com.example.basemasterdetailsapplication.data.source.network.models.ResultWrapper
 import com.example.basemasterdetailsapplication.data.source.repository.dataRepository
 import com.example.basemasterdetailsapplication.databinding.ListFragmentBinding
-import com.example.basemasterdetailsapplication.domain.DataStatus
 import com.example.basemasterdetailsapplication.domain.DummyData
 import com.google.android.material.snackbar.Snackbar
 
@@ -72,10 +73,24 @@ class ListFragment : Fragment() {
             })
 
 
-        viewModel.dataStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.networkList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                if (it == DataStatus.ERROR) {
-                    showError()
+                when (it) {
+                    is ResultWrapper.Success<*> -> {
+                        //Do What you want with your response
+                        //val list = it.value as List<NetworkDummyData>
+                        Log.d("ListFrag Success ", it.toString())
+                    }
+
+                    is ResultWrapper.GenericError -> {
+                        Log.d("ListFrag ", it.error?.message ?: "Generic Error")
+                        showError()
+                    }
+
+                    is ResultWrapper.NetworkError -> {
+                        Log.d("ListFrag", " Network Error ")
+                        showError()
+                    }
                 }
             }
         })

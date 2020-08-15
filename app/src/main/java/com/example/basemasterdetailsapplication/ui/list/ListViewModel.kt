@@ -1,37 +1,34 @@
 package com.example.basemasterdetailsapplication.ui.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.example.basemasterdetailsapplication.data.source.network.models.ResultWrapper
 import com.example.basemasterdetailsapplication.domain.DataRepository
-import com.example.basemasterdetailsapplication.domain.DataStatus
 import com.example.basemasterdetailsapplication.domain.DummyData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: DataRepository) : ViewModel() {
 
-    private val viewModelJob = Job()
+    private val _List: MutableLiveData<ResultWrapper<List<DummyData>>> = MutableLiveData()
 
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    private var _dataStatus: MutableLiveData<DataStatus> = MutableLiveData()
-
-    val dataStatus :LiveData<DataStatus> = _dataStatus
+    val networkList: LiveData<ResultWrapper<List<DummyData>>> = _List
 
     val list: LiveData<List<DummyData>> = repository.getList()
+
+    val loading = MutableLiveData(false)
 
     init {
         refresh()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
+    fun refresh() {
+        viewModelScope.launch {
+            loading.postValue(true)
+            _List.postValue(repository.refreshList())
+            loading.postValue(false)
+        }
+
     }
+
 
     /**
      * Factory for constructing ListViewModel with parameter
@@ -43,13 +40,6 @@ class ListViewModel(private val repository: DataRepository) : ViewModel() {
                 return ListViewModel(repository) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
-        }
-    }
-
-    fun refresh()
-    {
-        coroutineScope.launch {
-            repository.refreshList(_dataStatus)
         }
     }
 }

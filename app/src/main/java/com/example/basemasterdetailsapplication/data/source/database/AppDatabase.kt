@@ -12,7 +12,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val dataDao: DataDao
 
     companion object {
-
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
